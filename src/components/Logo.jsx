@@ -1,0 +1,1 @@
+export default function Logo({light=false}){return <a href="#top" aria-label="CPBL home" className={`inline-flex items-center gap-2 ${light?'text-cream':'text-forest'}`}><span className="grid h-9 w-9 place-items-center border border-current/35 font-serif text-[15px] font-bold">C</span><span className="text-[14px] font-extrabold tracking-[.17em]">CPBL</span></a>}
