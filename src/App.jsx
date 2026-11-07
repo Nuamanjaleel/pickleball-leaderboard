@@ -1,2 +1,46 @@
-import Hero from './components/Hero';import {Ticker,Navbar} from './components/Header';import Leaderboard from './components/Leaderboard';import NewsFeed from './components/NewsFeed';import RightRail from './components/RightRail';import Footer from './components/Footer';
-export default function App(){return <main className="overflow-hidden bg-cream"><Hero/><div id="dashboard"><Ticker/><Navbar/><div className="mx-auto max-w-[1600px] px-5 py-10 sm:px-8 sm:py-14 lg:px-[4vw]"><div className="mb-8 flex flex-col justify-between gap-3 border-b border-forest/15 pb-5 sm:flex-row sm:items-end"><div><p className="eyebrow">The CPBL match centre</p><h1 className="mt-1 font-serif text-[34px] font-bold tracking-[-.04em] sm:text-[42px]">Inside the game<span className="text-rust">.</span></h1></div><p className="max-w-[330px] text-[11px] leading-[1.7] text-forest/55 sm:text-right">Rankings, stories and the latest from a sport that never stops moving.</p></div><div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-[minmax(245px,1fr)_minmax(0,2fr)] xl:grid-cols-[minmax(245px,1fr)_minmax(420px,2fr)_minmax(245px,1fr)] xl:gap-7"><Leaderboard/><NewsFeed/><RightRail/></div></div></div><Footer/></main>}
+import React from 'react';
+import Header from './components/Header';
+import Hero from './components/Hero';
+import Leaderboard from './components/Leaderboard';
+import NewsFeed from './components/NewsFeed';
+import RightRail from './components/RightRail';
+import Footer from './components/Footer';
+
+function App() {
+    return (
+        <div className="min-h-screen bg-[#F4F6F8] font-sans selection:bg-[#C5FF00] selection:text-[#0A1A2F]">
+            <Header />
+
+            <main>
+                {/* Full-bleed Hero section stays exactly as it is */}
+                <Hero />
+
+                {/* 3-Column Dashboard Layout */}
+                <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+                        {/* Left Column: Leaderboards (Col span 3) */}
+                        <div className="lg:col-span-3 sticky top-24">
+                            <Leaderboard />
+                        </div>
+
+                        {/* Center Column: News Feed (Col span 6) */}
+                        <div className="lg:col-span-6 space-y-8">
+                            <NewsFeed />
+                        </div>
+
+                        {/* Right Column: Stats & Headlines (Col span 3) */}
+                        <aside className="lg:col-span-3 sticky top-24">
+                            <RightRail />
+                        </aside>
+
+                    </div>
+                </div>
+            </main>
+
+            <Footer />
+        </div>
+    );
+}
+
+export default App;

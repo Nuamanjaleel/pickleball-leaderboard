@@ -1,2 +1,85 @@
-import {ArrowUpRight,Mail} from 'lucide-react';import {contributors,headlines} from '../data/mockData';
-export default function RightRail(){return <aside className="space-y-5"><section className="card p-5 sm:p-6"><div className="mb-4 flex items-center justify-between"><div><p className="eyebrow">Keep up with the game</p><h2 className="mt-1 font-serif text-[25px] font-bold">Headlines</h2></div><ArrowUpRight size={17} className="text-rust"/></div><ol>{headlines.map((h,i)=><li key={h} className="flex gap-3 border-b border-[#eee9e1] py-4 first:pt-1 last:border-0 last:pb-0"><span className="pt-[2px] font-serif text-[17px] font-bold text-rust/70">0{i+1}</span><a href="#news" className="text-[12px] font-semibold leading-[1.55] hover:text-rust">{h}</a></li>)}</ol><a href="#news" className="quiet-link mt-5">All headlines <ArrowUpRight size={13}/></a></section><section className="card p-5 sm:p-6"><div className="mb-5"><p className="eyebrow">The voices behind the stories</p><h2 className="mt-1 font-serif text-[24px] font-bold leading-tight">Contact our<br/>contributors</h2></div><div className="space-y-4">{contributors.map(([name,role,initials,color])=><div key={name} className="flex items-center gap-3"><span style={{backgroundColor:color}} className="grid h-9 w-9 shrink-0 place-items-center rounded-full text-[9px] font-bold">{initials}</span><div className="min-w-0 flex-1"><p className="text-[11px] font-bold">{name}</p><p className="mt-0.5 text-[9px] text-forest/45">{role}</p></div><a href="mailto:contributors@cpbl.example" aria-label={`Email ${name}`} className="text-forest/35 hover:text-rust"><Mail size={14}/></a></div>)}</div><p className="mt-5 border-t border-[#eee9e1] pt-4 text-[10px] leading-[1.7] text-forest/50">Have a story, a result or a perspective to share? Our editorial team would love to hear from you.</p></section></aside>}
+import React from 'react';
+import { Trophy, Users, Award, Flame, Bell, ChevronRight } from 'lucide-react';
+import { contributors, headlines, stats } from '../data/mockData';
+
+const RightRail = () => {
+    const safeContributors = Array.isArray(contributors) ? contributors : [];
+    const safeHeadlines = Array.isArray(headlines) ? headlines : [];
+
+    const safeStats = Array.isArray(stats)
+        ? stats
+        : stats && typeof stats === 'object'
+            ? [
+                { label: 'Total Players', value: stats.totalPlayers || '1,240', icon: Users },
+                { label: 'Tournaments', value: stats.activeTournaments || '12', icon: Trophy },
+                { label: 'Prize Pool', value: stats.prizePool || '₹25,00,000', icon: Award },
+                { label: 'Cities', value: stats.cities || '24', icon: Flame }
+            ]
+            : [];
+
+    return (
+        <div className="space-y-6">
+
+            {/* Headlines Card */}
+            <div className="bg-white rounded-xl p-5 border border-slate-200 shadow-sm">
+                <div className="flex items-center gap-2 mb-4 pb-3 border-b border-slate-100">
+                    <Bell className="w-5 h-5 text-[#1A7AC5]" />
+                    <h3 className="font-black text-[#0A1A2F] text-sm uppercase tracking-wide">Headlines</h3>
+                </div>
+                <div className="space-y-3">
+                    {safeHeadlines.map((item, idx) => (
+                        <div key={item.id || idx} className="group flex items-start gap-3 cursor-pointer">
+                            <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[#1A7AC5] shrink-0" />
+                            <p className="text-sm font-medium text-slate-600 group-hover:text-[#1A7AC5] transition-colors leading-snug">
+                                {item.text || item.title}
+                            </p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* Stats Grid */}
+            <div className="bg-white rounded-xl p-5 border border-slate-200 shadow-sm">
+                <h3 className="font-black text-[#0A1A2F] text-sm uppercase tracking-wide mb-4 pb-3 border-b border-slate-100">
+                    League Scale
+                </h3>
+                <div className="grid grid-cols-2 gap-3">
+                    {safeStats.map((item, idx) => {
+                        const Icon = item.icon || Trophy;
+                        return (
+                            <div key={item.label || idx} className="bg-slate-50 p-3 rounded-lg border border-slate-100">
+                                <div className="flex items-center gap-1.5 text-slate-500 text-[10px] uppercase font-bold mb-1">
+                                    <Icon className="w-3 h-3 text-[#1A7AC5]" />
+                                    <span>{item.label}</span>
+                                </div>
+                                <div className="text-lg font-black text-[#0A1A2F] tracking-tight">{item.value}</div>
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
+
+            {/* Contributors */}
+            {safeContributors.length > 0 && (
+                <div className="bg-white rounded-xl p-5 border border-slate-200 shadow-sm">
+                    <h3 className="font-black text-[#0A1A2F] text-sm uppercase tracking-wide mb-4 pb-3 border-b border-slate-100">
+                        Contact Contributors
+                    </h3>
+                    <div className="space-y-4">
+                        {safeContributors.map((person, idx) => (
+                            <div key={person.id || idx} className="flex items-center gap-3">
+                                <img src={person.avatar} alt={person.name} className="w-8 h-8 rounded-full object-cover bg-slate-100" />
+                                <div>
+                                    <h4 className="text-sm font-bold text-slate-900">{person.name}</h4>
+                                    <p className="text-[11px] text-slate-500 uppercase tracking-wider">{person.role}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+};
+
+export default RightRail;

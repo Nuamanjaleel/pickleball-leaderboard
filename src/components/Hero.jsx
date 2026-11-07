@@ -1,3 +1,107 @@
-import {ArrowDown,ArrowUpRight} from 'lucide-react';import Logo from './Logo';
-const milestones=[['Mid-October','Expressions of Interest close','bg-rust'],['November','Live player auction','bg-forest'],['December','League stage','bg-forest'],['December','Finals','bg-sea']];
-export default function Hero(){return <section id="top" className="relative flex min-h-[760px] h-screen max-h-[1000px] flex-col overflow-hidden bg-cream px-6 pb-10 pt-7 sm:px-10 lg:px-[7.2vw]"><header className="flex items-center justify-between"><Logo/><span className="hidden text-[10px] font-bold uppercase tracking-[.2em] text-forest/50 sm:block">The game. The people. The point.</span><a href="#dashboard" className="quiet-link">Explore <ArrowUpRight size={14}/></a></header><div className="relative z-10 mx-auto grid w-full max-w-[1320px] flex-1 grid-cols-1 items-center gap-12 py-12 lg:grid-cols-[1.15fr_.85fr] lg:gap-20"><div><p className="eyebrow mb-6">A new season is taking shape</p><h1 className="font-serif text-[clamp(4.2rem,9.2vw,9.2rem)] font-bold leading-[.91] tracking-[-.065em] text-forest">From auction<br/><span className="text-rust">to finals.</span></h1><div className="mt-8 flex items-center gap-3 text-[12px] font-semibold text-forest/65"><span className="h-px w-9 bg-rust"/>Tentative window · Oct – Dec 2026</div></div><div className="relative max-w-[480px] lg:ml-auto lg:mr-8"><div className="mb-8 flex items-center justify-between border-b border-forest/15 pb-4"><span className="eyebrow">The road ahead</span><span className="text-[10px] font-bold uppercase tracking-[.16em] text-forest/40">2026 / Season 01</span></div><div className="absolute bottom-4 left-[7px] top-[62px] w-px bg-forest/15"/><div className="space-y-8">{milestones.map(([date,detail,tone],i)=><div className="relative flex gap-6" key={detail}><div className="relative z-10 mt-[5px] flex h-[15px] w-[15px] shrink-0 items-center justify-center rounded-full bg-cream"><span className={`h-[9px] w-[9px] rounded-full ${tone} ${i===3?'ring-[5px] ring-sea/20 shadow-[0_0_0_1px_#4B9B9B]':''}`}/></div><div className={`-mt-1 flex-1 ${i===3?'border border-sea/35 bg-white/65 px-4 py-3 shadow-[0_8px_24px_rgba(75,155,155,.09)]':''}`}><p className="text-[10px] font-bold uppercase tracking-[.16em] text-rust">{date}</p><p className="mt-1 font-serif text-[21px] font-bold leading-tight text-forest">{detail}</p>{i===3&&<span className="mt-2 inline-block text-[9px] font-bold uppercase tracking-[.18em] text-sea">The big moment</span>}</div></div>)}</div></div></div><a href="#dashboard" className="group mx-auto flex items-center gap-3 text-[10px] font-bold uppercase tracking-[.19em] text-forest/55 hover:text-rust"><span className="grid h-8 w-8 place-items-center rounded-full border border-forest/20 group-hover:border-rust"><ArrowDown size={14}/></span>Scroll down to leaderboards</a><div className="pointer-events-none absolute -bottom-32 -left-28 h-[370px] w-[370px] rounded-full border border-rust/10"/></section>}
+import React from 'react';
+
+const Hero = () => {
+    const partnerNames = [
+        'Red Bull',
+        'Wilson',
+        'Babolat',
+        'Gatorade',
+        'Oakley',
+        'New Balance',
+        'DHL'
+    ];
+
+    return (
+        <section className="relative h-screen min-h-[700px] w-full overflow-hidden bg-[#0A1A2F]">
+            {/* Full-bleed athlete image */}
+            <img
+                src="/juan.jpg"
+                alt="CPBL Athlete"
+                className="absolute inset-0 w-full h-full object-cover object-center"
+                onError={(e) => {
+                    e.target.style.display = 'none';
+                }}
+            />
+
+            {/* Dark gradient overlays */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0A1A2F]/95 via-[#0A1A2F]/70 to-[#0A1A2F]/30" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0A1A2F]/90 via-transparent to-[#0A1A2F]/50" />
+
+            {/* Top bar inside hero (logo + nav) */}
+            <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-10 pt-8 flex items-center justify-between">
+                {/* CPBL Logo + Wordmark */}
+                <div className="flex items-center gap-3">
+                    <img
+                        src="/cpbl-logo.png"
+                        alt="CPBL Logo"
+                        className="h-10 sm:h-12 w-auto object-contain drop-shadow-lg"
+                        onError={(e) => {
+                            e.target.style.display = 'none';
+                            if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
+                        }}
+                    />
+                    <div
+                        className="hidden h-12 w-12 rounded-xl bg-[#C5FF00] items-center justify-center text-[#0A1A2F] font-black text-2xl"
+                        aria-hidden="true"
+                    >
+                        P
+                    </div>
+                    <div className="flex flex-col leading-none">
+                        <span className="font-black text-2xl tracking-[0.15em] text-white">CPBL</span>
+                        <span className="text-[10px] tracking-[0.25em] text-white/60 uppercase font-semibold mt-1">
+                            Pro League
+                        </span>
+                    </div>
+                </div>
+
+                {/* Hero nav links */}
+                <nav className="hidden md:flex items-center gap-8 text-sm font-semibold text-white/90">
+                    <a href="#rankings" className="hover:text-[#C5FF00] transition-colors">
+                        Rankings
+                    </a>
+                    <a href="#contact" className="hover:text-[#C5FF00] transition-colors">
+                        Contact
+                    </a>
+                    <a href="#sponsors" className="hover:text-[#C5FF00] transition-colors">
+                        Sponsors
+                    </a>
+                    <a href="#download" className="hover:text-[#C5FF00] transition-colors">
+                        Download
+                    </a>
+                </nav>
+            </div>
+
+            {/* Main caption - Clean Bold Sans-Serif */}
+            <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-10 h-full flex flex-col justify-center pb-28">
+                <h1 className="text-white font-black text-5xl sm:text-7xl lg:text-8xl tracking-tight leading-none max-w-4xl">
+                    Dominate the Court,
+                    <br />
+                    Command the
+                    <br />
+                    Game.
+                </h1>
+            </div>
+
+            {/* Bottom sponsor name strip */}
+            <div className="absolute bottom-0 left-0 right-0 z-10 border-t border-white/10 bg-gradient-to-t from-black/40 to-transparent">
+                <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-5">
+                    <p className="text-[10px] uppercase tracking-[0.25em] text-white/50 font-semibold mb-3">
+                        Official Partners &amp; Sponsors
+                    </p>
+                    <div className="flex flex-wrap items-center gap-x-8 gap-y-2">
+                        {partnerNames.map((name) => (
+                            <span
+                                key={name}
+                                className="text-white/70 text-xs md:text-sm font-bold tracking-[0.2em] uppercase hover:text-[#C5FF00] transition-colors cursor-default"
+                            >
+                                {name}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+};
+
+export default Hero;

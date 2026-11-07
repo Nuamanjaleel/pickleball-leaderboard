@@ -1,2 +1,99 @@
-import {ArrowUpRight,Clock3} from 'lucide-react';import {articles} from '../data/mockData';
-export default function NewsFeed(){return <section id="news" className="space-y-5"><div className="flex items-end justify-between border-b border-forest/15 pb-3"><div><p className="eyebrow">The latest from the court</p><h2 className="section-title mt-1">Featured stories<span className="text-rust">.</span></h2></div><span className="hidden text-[9px] font-bold uppercase tracking-[.15em] text-forest/40 sm:block">News / 2026</span></div>{articles.map((a,i)=><article key={a.title} className="group overflow-hidden rounded-[5px] border border-[#e9e2d7] bg-white shadow-soft"><div className="relative aspect-[16/9] overflow-hidden bg-[#E5E1D7]"><img src={a.image} alt={a.alt} loading={i?'lazy':'eager'} className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.035]"/><span className="absolute left-4 top-4 max-w-[80%] bg-rust px-3 py-2 text-[8px] font-bold uppercase tracking-[.15em] text-white">{a.category}</span><span className="absolute bottom-3 right-3 bg-cream/90 px-2 py-1 text-[8px] font-bold uppercase tracking-[.12em]">CPBL Journal / 0{i+1}</span></div><div className="p-5 sm:p-6"><h3 className="max-w-[620px] font-serif text-[25px] font-bold leading-[1.12] tracking-[-.025em] text-forest transition group-hover:text-rust sm:text-[29px]">{a.title}</h3><p className="mt-3 max-w-[590px] text-[12px] leading-[1.8] text-forest/65">{a.description}</p><div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-[#eee9e1] pt-4"><span className="inline-flex items-center gap-2 text-[9px] font-semibold uppercase tracking-[.1em] text-forest/45"><Clock3 size={12}/>{a.time}<span className="text-rust">·</span>{a.author}</span><a href="#news" aria-label={`Read ${a.title}`} className="grid h-8 w-8 place-items-center rounded-full border border-forest/15 hover:border-rust hover:bg-rust hover:text-white"><ArrowUpRight size={15}/></a></div></div></article>)}</section>}
+import React from 'react';
+import { Clock, ArrowUpRight, Newspaper } from 'lucide-react';
+import { articles } from '../data/mockData';
+
+const NewsFeed = () => {
+    const posts = Array.isArray(articles) ? articles : [];
+
+    return (
+        <section className="space-y-8">
+            {/* Section heading + subtext */}
+            <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                    <Newspaper className="w-5 h-5 text-[#1A7AC5]" />
+                    <span className="text-xs font-extrabold uppercase tracking-[0.2em] text-[#1A7AC5]">
+                        CPBL Journal
+                    </span>
+                </div>
+                <h2 className="text-3xl sm:text-4xl font-black text-[#0A1A2F] tracking-tight leading-tight">
+                    League News &amp; Stories
+                </h2>
+                <p className="text-slate-500 text-sm sm:text-base max-w-2xl leading-relaxed">
+                    Match reports, academy drops, and the plays that shape the rankings — straight from the
+                    CPBL desk.
+                </p>
+            </div>
+
+            {/* Article cards */}
+            <div className="space-y-6">
+                {posts.map((post, idx) => (
+                    <article
+                        key={post.id || idx}
+                        className="group bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-md hover:border-[#1A7AC5]/30 transition-all"
+                    >
+                        {/* Image */}
+                        <div className="relative w-full h-52 sm:h-64 overflow-hidden bg-slate-100">
+                            <img
+                                src={post.image}
+                                alt={post.title}
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                onError={(e) => {
+                                    e.target.src =
+                                        'https://images.unsplash.com/photo-1554068865-24cecd4e34b8?auto=format&fit=crop&q=80&w=1200';
+                                }}
+                            />
+                            <div className="absolute top-4 left-4">
+                                <span className="bg-[#0A1A2F] text-[#C5FF00] text-[10px] font-extrabold uppercase tracking-widest px-3 py-1.5 rounded-md">
+                                    {post.category}
+                                </span>
+                            </div>
+                            <div className="absolute bottom-4 right-4">
+                                <span className="bg-white/90 backdrop-blur text-[#0A1A2F] text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded">
+                                    CPBL Journal / {String(idx + 1).padStart(2, '0')}
+                                </span>
+                            </div>
+                        </div>
+
+                        {/* Body */}
+                        <div className="p-6 sm:p-8">
+                            <h3 className="text-xl sm:text-2xl font-black text-[#0A1A2F] leading-snug group-hover:text-[#1A7AC5] transition-colors">
+                                {post.title}
+                            </h3>
+
+                            {post.excerpt && (
+                                <p className="mt-3 text-slate-600 text-sm sm:text-[15px] leading-relaxed">
+                                    {post.excerpt}
+                                </p>
+                            )}
+
+                            <div className="mt-5 flex items-center justify-between gap-4 border-t border-slate-100 pt-4">
+                                <div className="flex items-center gap-3 text-xs text-slate-400 font-semibold">
+                                    <span className="flex items-center gap-1.5">
+                                        <Clock className="w-3.5 h-3.5" />
+                                        {post.date}
+                                    </span>
+                                    {post.readTime && (
+                                        <>
+                                            <span className="w-1 h-1 rounded-full bg-slate-300" />
+                                            <span>{post.readTime}</span>
+                                        </>
+                                    )}
+                                </div>
+
+                                <button
+                                    type="button"
+                                    className="inline-flex items-center gap-1.5 text-sm font-bold text-[#1A7AC5] hover:text-[#0A1A2F] transition-colors"
+                                >
+                                    Read story
+                                    <ArrowUpRight className="w-4 h-4" />
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                ))}
+            </div>
+        </section>
+    );
+};
+
+export default NewsFeed;

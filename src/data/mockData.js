@@ -1,75 +1,186 @@
-export const rankings = {
-    women: [
-        ['Anna Leigh Waters', '🇺🇸', '18,450', 'AW', '#E6C5A9'],
-        ['Catherine Parenteau', '🇨🇦', '16,820', 'CP', '#D6DCCB'],
-        ['Anna Bright', '🇺🇸', '15,970', 'AB', '#E8D9B8'],
-        ['Jorja Johnson', '🇺🇸', '14,610', 'JJ', '#D8C7D2'],
-        ['Lea Jansen', '🇺🇸', '13,980', 'LJ', '#C9D9D4'],
-    ],
-    men: [
-        ['Ben Johns', '🇺🇸', '19,120', 'BJ', '#D7C5AF'],
-        ['Federico Staksrud', '🇦🇷', '17,640', 'FS', '#D9DCC7'],
-        ['JW Johnson', '🇺🇸', '16,930', 'JW', '#E8D9B8'],
-        ['Tyson McGuffin', '🇺🇸', '15,480', 'TM', '#D8C7D2'],
-        ['James Ignatowich', '🇺🇸', '14,760', 'JI', '#C9D9D4'],
-    ],
-};
+export const rankings = [
+    // Men's Singles
+    { id: 1, rank: 1, name: "Ben Johns", points: 4500, change: "up", gender: "men", type: "singles" },
+    { id: 2, rank: 2, name: "Federico Staksrud", points: 4200, change: "down", gender: "men", type: "singles" },
+    { id: 3, rank: 3, name: "Connor Garnett", points: 3800, change: "same", gender: "men", type: "singles" },
+    { id: 4, rank: 4, name: "JW Johnson", points: 3600, change: "up", gender: "men", type: "singles" },
+    { id: 5, rank: 5, name: "Tyson McGuffin", points: 3400, change: "down", gender: "men", type: "singles" },
+    { id: 15, rank: 6, name: "Andrei Daescu", points: 3200, change: "up", gender: "men", type: "singles" },
+    { id: 16, rank: 7, name: "James Ignatowich", points: 3000, change: "same", gender: "men", type: "singles" },
+    { id: 17, rank: 8, name: "Dylan Frazier", points: 2850, change: "down", gender: "men", type: "singles" },
+    { id: 18, rank: 9, name: "Christian Alshon", points: 2700, change: "up", gender: "men", type: "singles" },
+    { id: 19, rank: 10, name: "Dekel Bar", points: 2550, change: "same", gender: "men", type: "singles" },
 
-export const teams = [
-    ['New Jersey 5s', '8,420', '5S'],
-    ['St. Louis Shock', '8,105', 'SS'],
-    ['Columbus Sliders', '7,890', 'CS'],
-    ['Dallas Flash', '7,540', 'DF'],
+    // Women's Singles
+    { id: 6, rank: 1, name: "Anna Leigh Waters", points: 4800, change: "up", gender: "women", type: "singles" },
+    { id: 7, rank: 2, name: "Catherine Parenteau", points: 4400, change: "same", gender: "women", type: "singles" },
+    { id: 8, rank: 3, name: "Salome Devidze", points: 3900, change: "up", gender: "women", type: "singles" },
+    { id: 9, rank: 4, name: "Lea Jansen", points: 3700, change: "down", gender: "women", type: "singles" },
+    { id: 10, rank: 5, name: "Mary Brascia", points: 3500, change: "same", gender: "women", type: "singles" },
+    { id: 20, rank: 6, name: "Brooke Buckner", points: 3300, change: "up", gender: "women", type: "singles" },
+    { id: 21, rank: 7, name: "Parris Todd", points: 3100, change: "down", gender: "women", type: "singles" },
+    { id: 22, rank: 8, name: "Jessie Irvine", points: 2950, change: "same", gender: "women", type: "singles" },
+    { id: 23, rank: 9, name: "Rachel Rohrabacher", points: 2800, change: "up", gender: "women", type: "singles" },
+    { id: 24, rank: 10, name: "Tina Pisnik", points: 2650, change: "same", gender: "women", type: "singles" },
+
+    // Men's Doubles
+    { id: 11, rank: 1, name: "Johns / Johns", points: 5000, change: "same", gender: "men", type: "doubles" },
+    { id: 12, rank: 2, name: "Wright / Newman", points: 4600, change: "up", gender: "men", type: "doubles" },
+    { id: 25, rank: 3, name: "Staksrud / Tardio", points: 4100, change: "down", gender: "men", type: "doubles" },
+    { id: 26, rank: 4, name: "Johnson / Johnson", points: 3900, change: "same", gender: "men", type: "doubles" },
+    { id: 27, rank: 5, name: "McGuffin / Waters", points: 3700, change: "up", gender: "men", type: "doubles" },
+
+    // Women's Doubles
+    { id: 13, rank: 1, name: "Waters / Parenteau", points: 5200, change: "same", gender: "women", type: "doubles" },
+    { id: 14, rank: 2, name: "Bright / Rohrabacher", points: 4300, change: "up", gender: "women", type: "doubles" },
+    { id: 28, rank: 3, name: "Devidze / Jansen", points: 4000, change: "down", gender: "women", type: "doubles" },
+    { id: 29, rank: 4, name: "Brascia / Buckner", points: 3750, change: "same", gender: "women", type: "doubles" },
+    { id: 30, rank: 5, name: "Todd / Irvine", points: 3500, change: "up", gender: "women", type: "doubles" }
+];
+
+export const tournamentWinners = [
+    {
+        rank: "Winner",
+        name: "Ben Johns",
+        prize: "₹1,50,000",
+        category: "Men's Singles",
+        image: "https://images.unsplash.com/photo-1593787467001-e3210c4a400c?auto=format&fit=crop&q=80&w=200"
+    },
+    {
+        rank: "1st Runner Up",
+        name: "Federico Staksrud",
+        prize: "₹75,000",
+        category: "Men's Singles",
+        image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200"
+    },
+    {
+        rank: "2nd Runner Up",
+        name: "JW Johnson",
+        prize: "₹40,000",
+        category: "Men's Singles",
+        image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200"
+    }
+];
+
+export const prizeWinners = tournamentWinners;
+
+export const sponsors = [
+    {
+        id: 1,
+        name: "Red Bull",
+        logo: "/redbull.png",
+        fallback: "https://cdn.worldvectorlogo.com/logos/red-bull.svg",
+        type: "main",
+        isMain: true
+    },
+    {
+        id: 2,
+        name: "Wilson",
+        logo: "/wilson.png",
+        fallback: "https://cdn.worldvectorlogo.com/logos/wilson-1.svg",
+        type: "partner",
+        isMain: false
+    },
+    {
+        id: 3,
+        name: "Oakley",
+        logo: "/oakley.png",
+        fallback: "https://cdn.worldvectorlogo.com/logos/oakley-1.svg",
+        type: "partner",
+        isMain: false
+    },
+    {
+        id: 4,
+        name: "Gatorade",
+        logo: "/gatorade.png",
+        fallback: "https://cdn.worldvectorlogo.com/logos/gatorade-1.svg",
+        type: "partner",
+        isMain: false
+    },
+    {
+        id: 5,
+        name: "New Balance",
+        logo: "/newbalance.png",
+        fallback: "https://cdn.worldvectorlogo.com/logos/new-balance-2.svg",
+        type: "partner",
+        isMain: false
+    },
+    {
+        id: 6,
+        name: "DHL",
+        logo: "/dhl.png",
+        fallback: "https://cdn.worldvectorlogo.com/logos/dhl-1.svg",
+        type: "partner",
+        isMain: false
+    },
+    {
+        id: 7,
+        name: "Babolat",
+        logo: "/babalot.png",
+        fallback: "https://cdn.worldvectorlogo.com/logos/babolat.svg",
+        type: "partner",
+        isMain: false
+    }
 ];
 
 export const articles = [
     {
-        category: 'Let the festivities begin',
-        title: 'The next chapter of pickleball starts with the people who play it',
-        description:
-            'A new season brings fresh rivalries, familiar faces and more reasons to get courtside.',
-        time: '9 hours ago',
-        author: 'CPBL Staff',
-        image:
-            'https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?auto=format&fit=crop&w=1200&q=80',
-        alt: 'Pickleball paddle and ball on an outdoor court',
+        id: 1,
+        title: "CPBL Championship Finals: A Night to Remember",
+        excerpt:
+            "Packed stands, clutch rallies, and a last-point showdown that had the whole arena on its feet. Relive the points that defined this season's crown.",
+        image: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?auto=format&fit=crop&q=80&w=1200",
+        category: "Tournament",
+        date: "March 10, 2024",
+        readTime: "4 min read"
     },
     {
-        category: 'Tournament preview',
-        title: 'The matchups and storylines to watch this November',
-        description:
-            'From rising doubles partnerships to proven champions, the draw is full of possibility.',
-        time: 'Yesterday',
-        author: 'Maya Collins',
-        image:
-            'https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?auto=format&fit=crop&w=1200&q=80',
-        alt: 'Outdoor racquet sports court in daylight',
+        id: 2,
+        title: "New Training Center Opens in Downtown",
+        excerpt:
+            "Eight pro courts, recovery suites, and a performance lab — the new CPBL Training Center is open to ranked athletes and academy members this month.",
+        image: "https://images.unsplash.com/photo-1626224580174-d6093f3098dc?auto=format&fit=crop&q=80&w=1200",
+        category: "Academy",
+        date: "March 8, 2024",
+        readTime: "3 min read"
     },
     {
-        category: 'Around the league',
-        title: 'Building a team culture that travels beyond the baseline',
-        description:
-            'Inside the clubs creating a stronger community, one rally at a time.',
-        time: '2 days ago',
-        author: 'CPBL Staff',
-        image:
-            'https://images.unsplash.com/photo-1554068865-24cecd4e34b8?auto=format&fit=crop&w=1200&q=80',
-        alt: 'Athletes playing a court sport',
+        id: 3,
+        title: "Singles Strategy: Winning the Transition Zone",
+        excerpt:
+            "Coaches break down how top-ranked CPBL singles players control the mid-court and turn defense into an attack in under two shots.",
+        image: "https://images.unsplash.com/photo-1595435934919-5c4b0b1b0b1b?auto=format&fit=crop&q=80&w=1200",
+        category: "Insights",
+        date: "March 5, 2024",
+        readTime: "5 min read"
+    }
+];
+
+export const news = articles;
+
+export const contributors = [
+    {
+        id: 1,
+        name: "Coach Mike",
+        role: "Technical Analyst",
+        avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=100"
     },
+    {
+        id: 2,
+        name: "Sarah J.",
+        role: "Lead Umpire",
+        avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=100"
+    }
 ];
 
 export const headlines = [
-    'Five things to know before the November player auction',
-    'A new generation is changing the doubles game',
-    'Inside the clubs bringing pickleball to more communities',
-    'The points race: who is moving up this month?',
-    'League schedule and key dates announced for December',
+    { id: 1, text: "Registration for Summer Open now live!", type: "alert" },
+    { id: 2, text: "New ranking points system announced.", type: "news" }
 ];
 
-export const contributors = [
-    ['Maya Collins', 'Tournament reporter', 'MC', '#D9C7B8'],
-    ['Jordan Lee', 'Player features', 'JL', '#C9D9D4'],
-    ['Alex Morgan', 'League desk', 'AM', '#E8D9B8'],
-    ['Sam Rivera', 'Club correspondent', 'SR', '#D8C7D2'],
-    ['Taylor Brooks', 'Photo editor', 'TB', '#D6DCCB'],
-];
+export const stats = {
+    totalPlayers: 1240,
+    activeTournaments: 12,
+    prizePool: "₹25,00,000",
+    cities: 24
+};
