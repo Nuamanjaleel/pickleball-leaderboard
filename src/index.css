@@ -36,7 +36,7 @@ a {
 
 @layer components {
     .eyebrow {
-        @apply text-[10px] font-bold uppercase tracking-[.19em] text-sea;
+        @apply text-[10px] font-bold uppercase tracking-[.19em] text-rust;
     }
 
     .section-title {
@@ -49,5 +49,23 @@ a {
 
     .quiet-link {
         @apply inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[.12em] text-rust transition-colors hover:text-forest;
+    }
+}
+/* Accessibility: visible keyboard focus on light and dark backgrounds */
+:focus-visible {
+    outline: 3px solid #1A7AC5;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px #ffffff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
     }
 }
